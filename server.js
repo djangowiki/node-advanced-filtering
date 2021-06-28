@@ -11,6 +11,12 @@ dotenv.config({ path: './config/env.env' });
 const connectDB = require('./config/db');
 connectDB();
 
+// Load routes.
+const bootcamps = require('./routes/bootcamps');
+
+// Middleware.
+app.use('/api/v1/bootcamps/', bootcamps);
+
 // Create Server.
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
