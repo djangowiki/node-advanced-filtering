@@ -39,22 +39,19 @@ exports.getBootcampsRegex = asyncHandler(async (req, res, next) => {
 });
 
 exports.getBootcampsRegexSelect = asyncHandler(async (req, res, next) => {
-  // Set query and remove select and sort from query.
-  let query;
-  const reqQuery = { ...req.query };
-  const removeFields = ['select', 'sort'];
-  removeFields.forEach((params) => delete reqQuery[params]);
-  // Filter records.
-  let queryStr = JSON.stringify(reqQuery);
-  queryStr = queryStr.replace(
-    /\b(lt|lte|gt|gte|in)\b/g,
-    (match) => `$${match}`
-  );
-  query = await Bootcamp.find(JSON.parse(queryStr));
-  if (req.query.select) {
-    const selectQuery = req.query.select.split(',').join(' ');
-    console.log(selectQuery);
-    // query = query.select(selectQuery);
-  }
-  res.status(200).json({ success: true, count: query.length, data: query });
+  // let query;
+  // let queryStr = JSON.stringify(req.query);
+  // queryStr = queryStr.replace(
+  //   /\b(lt|lte|gt|gte|in)\b/g,
+  //   (match) => `$${match}`
+  // );
+  // query = await Bootcamp.find(JSON.parse(queryStr));
+  // const reqQuery = { ...req.query };
+  // const removeFields = ['select'];
+  // removeFields.forEach((params) => delete reqQuery[params]);
+  // if (req.query.select) {
+  //   query = query.select(reqQuery);
+  // }
+  // bootcamp = await Bootcamp.find(reqQuery);
+  // res.status(200).json({ success: true, count: query.length, data: query });
 });
